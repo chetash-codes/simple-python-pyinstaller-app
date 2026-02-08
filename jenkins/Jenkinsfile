@@ -11,7 +11,11 @@ pipeline {
     stages {
         stage('Install Dependencies') {
             steps {
-                sh 'pip install pytest pyinstaller'
+                sh '''
+                    apt-get update
+                    apt-get install -y binutils
+                    pip install pytest pyinstaller
+                '''
             }
         }
         stage('Build') {
